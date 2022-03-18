@@ -6,11 +6,12 @@
 
 stdenv.mkDerivation {
   pname = "sun20i-d1-spl";
-  version = "unstable-20220228";
+  version = "unstable-2022-02-28";
 
   src = fetchFromGitHub {
     owner = "smaeul";
     repo = "sun20i_d1_spl";
+    # Last git revision from the `mainline` branch:
     rev = "0ad88bfdb723b1ac74cca96122918f885a4781ac";
     sha256 = "sha256-4aztbyexULkqbZ2MWRAl8dw9mU8D6z1mllrVchMewJo=";
   };
