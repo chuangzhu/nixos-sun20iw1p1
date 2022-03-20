@@ -6,7 +6,6 @@ rec {
   });
   sun20i-d1-spl = prev.pkgs.callPackage ./spl.nix { };
   ubootLicheeRV = prev.pkgs.callPackage ./uboot.nix { };
-  linux_nezha = prev.pkgs.callPackage ./linux.nix {
-  };
+  linux_nezha = prev.pkgs.callPackage ./linux.nix { };
   linuxPackages_nezha = prev.linuxKernel.packagesFor linux_nezha;
 }

@@ -3,7 +3,7 @@
     nixpkgs.url = "github:zhaofengli/nixpkgs/riscv";
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
+  outputs = { self, nixpkgs }:
     let
       pkgs = import nixpkgs {
         system = "riscv64-linux";
@@ -25,6 +25,12 @@
           swig
           (python3.withPackages (p: [ p.libfdt p.setuptools ]))
         ];
+      };
+      nixosConfigurations = {
+        sdImageLicheeRV = nixpkgs.lib.nixosSystem {
+          system = "riscv64-linux";
+          modules = [ ./sd-image-licheerv.nix ];
+        };
       };
     };
 }
