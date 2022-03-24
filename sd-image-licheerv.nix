@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{ config, lib, pkgs ? import <nixpkgs>, modulesPath, ... }:
 
 {
   nixpkgs.overlays = [ (import ./overlay.nix) ];
@@ -13,18 +13,18 @@
   boot.loader.generic-extlinux-compatible.enable = true;
 
   boot.consoleLogLevel = lib.mkDefault 7;
-  boot.kernelPackages = pkgs.linuxPackages_nezha;
-  boot.kernelParams = [ "console=ttyS0,115200n8" "console=tty0" ];
-  boot.initrd.availableKernelModules = lib.mkForce [ "usbhid" "usb_storage" "sd_mod" "sr_mod" ];
+  boot.kernelPackages = pkgs.linuxPackages_licheerv;
+  boot.kernelParams = [ "console=ttyS0,115200n8" "console=tty0" "earlycon=sbi" "delayacct" "slub_debug" ];
+  boot.initrd.availableKernelModules = lib.mkForce [ ];
 
   # Exclude zfs
-  boot.supportedFilesystems = lib.mkForce [ "btrfs" "reiserfs" "vfat" "f2fs" "xfs" "ntfs" "cifs" ];
+  boot.supportedFilesystems = lib.mkForce [ ];
 
   sdImage = {
     firmwarePartitionOffset = 20;
     postBuildCommands = ''
-      dd if=${pkgs.sun20i-d1-spl}/boot0_sdcard_sun20iw1p1.bin of=$img bs=512 seek=16
-      dd if=${pkgs.ubootLicheeRV}/u-boot.toc1 of=$img bs=512 seek=32800
+      dd conv=notrunc if=${pkgs.sun20i-d1-spl}/boot0_sdcard_sun20iw1p1.bin of=$img bs=512 seek=16
+      dd conv=notrunc if=${pkgs.ubootLicheeRV}/u-boot.toc1 of=$img bs=512 seek=32800
     '';
     populateRootCommands = ''
       mkdir -p ./files/boot
@@ -32,6 +32,7 @@
     '';
     # Sun20i_d1_spl doesn't support loading U-Boot from a partition. The line below is a stub
     populateFirmwareCommands = "";
+    # compressImage = false;
   };
 
   installer.cloneConfig = false;

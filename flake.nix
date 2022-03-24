@@ -13,6 +13,13 @@
     {
       overlay = import ./overlay.nix;
       legacyPackages.riscv64-linux = pkgs;
+      nixosConfigurations = {
+        sdImageLicheeRV = nixpkgs.lib.nixosSystem {
+          system = "riscv64-linux";
+          modules = [ ./sd-image-licheerv.nix ];
+        };
+      };
+
       devShell.riscv64-linux = pkgs.mkShell {
         buildInputs = with pkgs; [
           gcc
@@ -25,12 +32,6 @@
           swig
           (python3.withPackages (p: [ p.libfdt p.setuptools ]))
         ];
-      };
-      nixosConfigurations = {
-        sdImageLicheeRV = nixpkgs.lib.nixosSystem {
-          system = "riscv64-linux";
-          modules = [ ./sd-image-licheerv.nix ];
-        };
       };
     };
 }
