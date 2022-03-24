@@ -6,7 +6,7 @@ $ nix build .#nixosConfigurations.sdImageLicheeRV.config.system.build.sdImage
 
 ## Or without Nix flakes
 $ git clone https://github.com/zhaofengli/nixpkgs.git -b riscv ../nixpkgs
-$ nix-build sd-image-licheerv.nix -I nixpkgs=../nixpkgs -A config.system.build.sdImage
+$ nix-build ../nixpkgs/nixos -I nixos-config=./sd-image-licheerv.nix -I nixpkgs=../nixpkgs --argstr system riscv64-linux -A config.system.build.sdImage
 ```
 
 For cross compiling, add this to your `configuration.nix`:
@@ -15,7 +15,7 @@ For cross compiling, add this to your `configuration.nix`:
   boot.binfmt.emulatedSystems = [ "riscv64-linux" ];
 ```
 
-Precompiled images can be found on the [GitHub releases page](https://github.com/chuangzhu/nixos-sun20iw1p1).
+Precompiled images can be found on the [GitHub releases page](https://github.com/chuangzhu/nixos-sun20iw1p1/releases).
 
 ## Status
 
