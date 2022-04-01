@@ -21,7 +21,7 @@ Precompiled images can be found on the [GitHub releases page](https://github.com
 
 The image boots successfully on a LicheeRV Dock board. HDMI driver and WiFi is currently missing. More boards supports need to be added.
 
-[![asciicast](https://asciinema.org/a/iUTVUiSaB5SPQLgGtwvyqkeHs.svg)](https://asciinema.org/a/iUTVUiSaB5SPQLgGtwvyqkeHs)
+[![asciicast](https://asciinema.org/a/483161.svg)](https://asciinema.org/a/483161)
 
 ## Credit
 
