@@ -14,8 +14,9 @@
 
   boot.consoleLogLevel = lib.mkDefault 7;
   boot.kernelPackages = pkgs.linuxPackages_licheerv;
-  boot.kernelParams = [ "console=ttyS0,115200n8" "console=tty0" "earlycon=sbi" "delayacct" "slub_debug" ];
+  boot.kernelParams = [ "console=ttyS0,115200n8" "console=tty0" "earlycon=sbi" ];
   boot.initrd.availableKernelModules = lib.mkForce [ ];
+  boot.extraModulePackages = [ pkgs.linuxPackages_licheerv.rtl8723ds ];
 
   # Exclude zfs
   boot.supportedFilesystems = lib.mkForce [ ];

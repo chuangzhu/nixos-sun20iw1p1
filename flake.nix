@@ -24,13 +24,28 @@
         buildInputs = with pkgs; [
           gcc
           binutils
-          bison
-          flex
           dtc
-          openssl
-          bc
           swig
           (python3.withPackages (p: [ p.libfdt p.setuptools ]))
+          pkg-config
+          ncurses
+          nettools
+          bc
+          bison
+          flex
+          perl
+          rsync
+          gmp
+          libmpc
+          mpfr
+          openssl
+          libelf
+          cpio
+          elfutils
+          zstd
+          gawk
+          zlib
+          pahole
         ];
       };
     };

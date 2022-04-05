@@ -7,5 +7,11 @@ rec {
   sun20i-d1-spl = prev.pkgs.callPackage ./spl.nix { };
   ubootLicheeRV = prev.pkgs.callPackage ./uboot.nix { };
   linux_licheerv = prev.pkgs.callPackage ./linux.nix { };
-  linuxPackages_licheerv = prev.linuxKernel.packagesFor linux_licheerv;
+  linuxPackages_licheerv = packagesFor linux_licheerv;
+
+  packagesFor = kernel:
+    let origin = prev.linuxKernel.packagesFor kernel; in
+    origin // {
+      rtl8723ds = origin.callPackage ./rtl8723ds.nix { };
+    };
 }
