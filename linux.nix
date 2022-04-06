@@ -16,15 +16,6 @@ let
   };
   version = "5.17.0-unstable-2022-02-03";
 
-  defconfig = builtins.readFile (
-    lib.overrideDerivation
-      (linuxKernel.linuxConfig {
-        inherit src version;
-        makeTarget = "licheerv_defconfig";
-      })
-      (prev: { patches = [ ./licheerv_defconfig.patch ]; })
-  );
-
 in
 
 # Not using buildLinux because common-config leads to kernel panic
@@ -36,12 +27,6 @@ linuxKernel.manualConfig {
   # DTB is already loaded from uboot.toc1
   stdenv = stdenv.override (prev: lib.recursiveUpdate prev { hostPlatform.linux-kernel.DTB = false; });
 
-  configfile = writeText "configfile" (defconfig + ''
-    CONFIG_CRYPTO_HMAC=y
-    CONFIG_DMIID=y
-    CONFIG_AUTOFS4_FS=y
-    CONFIG_TMPFS_POSIX_ACL=y
-    CONFIG_SECCOMP=y
-  '');
+  configfile = ./licheerv.config;
   allowImportFromDerivation = true;
 }

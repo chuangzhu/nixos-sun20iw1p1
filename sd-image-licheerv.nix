@@ -9,17 +9,20 @@
     "${modulesPath}/profiles/installation-device.nix"
   ];
 
-  boot.loader.grub.enable = false;
-  boot.loader.generic-extlinux-compatible.enable = true;
+  boot = {
+    loader.grub.enable = false;
+    loader.generic-extlinux-compatible.enable = true;
 
-  boot.consoleLogLevel = lib.mkDefault 7;
-  boot.kernelPackages = pkgs.linuxPackages_licheerv;
-  boot.kernelParams = [ "console=ttyS0,115200n8" "console=tty0" "earlycon=sbi" ];
-  boot.initrd.availableKernelModules = lib.mkForce [ ];
-  boot.extraModulePackages = [ pkgs.linuxPackages_licheerv.rtl8723ds ];
+    consoleLogLevel = lib.mkDefault 7;
+    kernelPackages = pkgs.linuxPackages_licheerv;
+    kernelParams = [ "console=ttyS0,115200n8" "console=tty0" "earlycon=sbi" ];
 
-  # Exclude zfs
-  boot.supportedFilesystems = lib.mkForce [ ];
+    initrd.availableKernelModules = lib.mkForce [ ];
+
+    extraModulePackages = [ pkgs.linuxPackages_licheerv.rtl8723ds ];
+    # Exclude zfs
+    supportedFilesystems = lib.mkForce [ ];
+  };
 
   sdImage = {
     firmwarePartitionOffset = 20;
@@ -34,6 +37,14 @@
     # Sun20i_d1_spl doesn't support loading U-Boot from a partition. The line below is a stub
     populateFirmwareCommands = "";
     # compressImage = false;
+  };
+
+  nix.settings = {
+    substituters = [ "https://unmatched.cachix.org" ];
+    trusted-public-keys = [ "unmatched.cachix.org-1:F8TWIP/hA2808FDABsayBCFjrmrz296+5CQaysosTTc=" ];
+    experimental-features = "nix-command flakes";
+    # TODO: figure out what config is needed to use sanbox
+    sandbox = false;
   };
 
   installer.cloneConfig = false;
