@@ -14,12 +14,12 @@
     loader.generic-extlinux-compatible.enable = true;
 
     consoleLogLevel = lib.mkDefault 7;
-    kernelPackages = pkgs.linuxPackages_licheerv;
+    kernelPackages = pkgs.linuxPackages_nezha;
     kernelParams = [ "console=ttyS0,115200n8" "console=tty0" "earlycon=sbi" ];
 
     initrd.availableKernelModules = lib.mkForce [ ];
 
-    extraModulePackages = [ pkgs.linuxPackages_licheerv.rtl8723ds ];
+    extraModulePackages = [ pkgs.linuxPackages_nezha.rtl8723ds ];
     # Exclude zfs
     supportedFilesystems = lib.mkForce [ ];
   };

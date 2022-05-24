@@ -6,8 +6,8 @@ rec {
   });
   sun20i-d1-spl = prev.pkgs.callPackage ./spl.nix { };
   ubootLicheeRV = prev.pkgs.callPackage ./uboot.nix { };
-  linux_licheerv = prev.pkgs.callPackage ./linux.nix { };
-  linuxPackages_licheerv = packagesFor linux_licheerv;
+  linux_nezha = prev.pkgs.callPackage ./linux.nix { };
+  linuxPackages_nezha = packagesFor linux_nezha;
 
   packagesFor = kernel:
     let origin = prev.linuxKernel.packagesFor kernel; in
