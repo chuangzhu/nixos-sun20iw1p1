@@ -19,7 +19,11 @@ Precompiled images can be found on the [GitHub releases page](https://github.com
 
 ## Status
 
-The image boots successfully on a LicheeRV Dock board. HDMI driver is currently missing. More boards supports need to be added.
+The image boots successfully with WiFi support. HDMI driver is currently missing. Supported boards:
+
+- [x] Sipeed LicheeRV Dock
+- [x] MangoPi MQ-Pro (compatible with LicheeRV)
+- [ ] MangoPi MQ
 
 [![asciicast](https://asciinema.org/a/484705.svg)](https://asciinema.org/a/484705)
 
