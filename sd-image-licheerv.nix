@@ -42,9 +42,7 @@
   nix.settings = {
     substituters = [ "https://unmatched.cachix.org" ];
     trusted-public-keys = [ "unmatched.cachix.org-1:F8TWIP/hA2808FDABsayBCFjrmrz296+5CQaysosTTc=" ];
-    experimental-features = "nix-command flakes";
-    # TODO: figure out what config is needed to use sandbox
-    sandbox = false;
+    experimental-features = [ "nix-command" "flakes" ];
   };
 
   installer.cloneConfig = false;
