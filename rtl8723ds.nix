@@ -1,7 +1,7 @@
 { lib, stdenv, fetchFromGitHub, kernel, bc }:
 
-stdenv.mkDerivation rec {
-  pname = "rtl8723bs";
+stdenv.mkDerivation {
+  pname = "rtl8723ds";
   version = "${kernel.version}-unstable-2022-04-07";
 
   src = fetchFromGitHub {

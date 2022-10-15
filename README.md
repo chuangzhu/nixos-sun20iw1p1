@@ -9,7 +9,7 @@ $ git clone https://github.com/zhaofengli/nixpkgs.git -b riscv ../nixpkgs
 $ nix-build ../nixpkgs/nixos -I nixos-config=./sd-image-licheerv.nix -I nixpkgs=../nixpkgs --argstr system riscv64-linux -A config.system.build.sdImage
 ```
 
-For cross compiling, add this to your `configuration.nix`:
+For emulated building, add this to your `configuration.nix`:
 
 ```nix
   boot.binfmt.emulatedSystems = [ "riscv64-linux" ];
