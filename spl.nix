@@ -16,13 +16,14 @@ stdenv.mkDerivation {
     sha256 = "sha256-4aztbyexULkqbZ2MWRAl8dw9mU8D6z1mllrVchMewJo=";
   };
 
-  buildInputs = [ python3 ];
+  nativeBuildInputs = [ python3 ];
 
-  buildPhase = ''
-    runHook preBuild
-    make p=sun20iw1p1 mmc
-    runHook postBuild
-  '';
+  makeFlags = [
+    "p=sun20iw1p1"
+    "mmc"
+  ] ++ lib.optionals (stdenv.hostPlatform != stdenv.buildPlatform) [
+    "CROSS_COMPILE=${stdenv.cc.targetPrefix}"
+  ];
 
   installPhase = ''
     runHook preInstall
