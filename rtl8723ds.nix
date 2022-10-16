@@ -16,7 +16,11 @@ stdenv.mkDerivation {
   nativeBuildInputs = [ bc ];
   buildInputs = kernel.moduleBuildDependencies;
 
-  makeFlags = [ "ARCH=${stdenv.hostPlatform.linuxArch}" ];
+  makeFlags = [
+    "ARCH=${stdenv.hostPlatform.linuxArch}"
+  ] ++ lib.optionals (stdenv.hostPlatform != stdenv.buildPlatform) [
+    "CROSS_COMPILE=${stdenv.cc.targetPrefix}"
+  ];
 
   prePatch = ''
     substituteInPlace ./Makefile \
