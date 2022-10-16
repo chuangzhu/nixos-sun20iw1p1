@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:zhaofengli/nixpkgs/riscv";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
   outputs = { self, nixpkgs }:
@@ -13,10 +13,14 @@
     {
       overlay = import ./overlay.nix;
       legacyPackages.riscv64-linux = pkgs;
+      nixosModules = {
+        sd-image-licheerv = import ./sd-image-licheerv.nix;
+      };
       nixosConfigurations = {
-        sdImageLicheeRV = nixpkgs.lib.nixosSystem {
-          system = "riscv64-linux";
-          modules = [ ./sd-image-licheerv.nix ];
+        sdImageLicheeRVInstaller = nixpkgs.lib.nixosSystem {
+          # Set system modularly (nixpkgs.hostPlatform)
+          system = null;
+          modules = [ ./sd-image-licheerv-installer.nix ];
         };
       };
 

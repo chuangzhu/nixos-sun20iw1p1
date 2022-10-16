@@ -3,6 +3,7 @@
 , buildUBoot
 , opensbi
 , writeText
+, dtb ? "arch/riscv/dts/sun20i-d1-lichee-rv-dock.dtb"
 }:
 
 let
@@ -11,7 +12,7 @@ let
     file = ${opensbi}/share/opensbi/lp64/generic/firmware/fw_dynamic.bin
     addr = 0x40000000
     [dtb]
-    file = arch/riscv/dts/sun20i-d1-lichee-rv-dock.dtb
+    file = ${dtb}
     addr = 0x44000000
     [u-boot]
     file = u-boot-nodtb.bin
