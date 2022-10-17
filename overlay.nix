@@ -4,14 +4,12 @@ rec {
   opensbi = prev.opensbi.overrideAttrs (super: {
     patches = [
       (prev.fetchpatch {
-        name = "lib-utils-fdt-Require-match-data-to-be-const.patch";
-        url = "https://github.com/smaeul/opensbi/commit/d53ad4541869f058e806133d7d5653d014b89b76.patch";
-        sha256 = "sha256-EKaSbpH/Oc5gVJN2EpVnUnAt0AUinm0C9hgiaMV3ro4=";
+        url = "https://github.com/smaeul/opensbi/commit/5023da429ea963f230f7361b2c15e60c7e428555.patch";
+        sha256 = "sha256-+ulCgexdZRp2pfsgDqgNiWysXfOO9sD3YqZbT5bG3V8=";
       })
       (prev.fetchpatch {
-        name = "lib-utils-timer-Add-a-separate-compatible-for-the-D1.patch";
-        url = "https://github.com/smaeul/opensbi/commit/4bcaf9aa1dbc69ccb68998c7d462ef895163d493.patch";
-        sha256 = "sha256-sqQtWBRREx+xs30S/kzNQG6Us0ZjYlGrmSb/LHUBaPI=";
+        url = "https://github.com/smaeul/opensbi/commit/e6793dc36a71537023f078034fe795c64a9992a3.patch";
+        sha256 = "sha256-FwVe1UMXhkPVih8FrO7+cwMobAiuOj1+H6+drBgPT+4=";
       })
     ];
   });
