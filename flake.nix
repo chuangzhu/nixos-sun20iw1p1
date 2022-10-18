@@ -27,8 +27,8 @@
       };
     };
 
-    devShells.riscv64-linux.default = self.legacyPackages.riscv64-linux.mkShell {
-      buildInputs = with self.legacyPackages.riscv64-linux; [
+    devShells.x86_64-linux.default = with self.legacyPackages.x86_64-linux.pkgsCross.riscv64; mkShell {
+      buildInputs = [
         gcc
         binutils
         dtc
@@ -54,6 +54,10 @@
         zlib
         pahole
       ];
+      shellHook = ''
+        export ARCH=${stdenv.hostPlatform.linuxArch}
+        export CROSS_COMPILE=${stdenv.cc.targetPrefix}
+      '';
     };
   };
 }

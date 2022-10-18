@@ -21,14 +21,14 @@ let
 in
 
 buildUBoot {
-  version = "unstable-2022-03-13";
+  version = "unstable-2022-05-27";
 
   src = fetchFromGitHub {
     owner = "smaeul";
     repo = "u-boot";
     # Last git revision from the `d1-wip` branch:
-    rev = "301dc3a3705ea4a5757da9d12ff0744377a2e1a8";
-    sha256 = "sha256-QH2US28eFhKWsamxUbj7SVkPLfmE+BQ5lMCUpUzfAW8=";
+    rev = "afc07cec423f17ebb4448a19435292ddacf19c9b";
+    sha256 = "sha256-ozwTTiS6PvYbv40w2xRX3fe7Pt4ZOjkVfX9pwt1JNGE=";
   };
 
   defconfig = "lichee_rv_defconfig";

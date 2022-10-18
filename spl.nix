@@ -6,14 +6,14 @@
 
 stdenv.mkDerivation {
   pname = "sun20i-d1-spl";
-  version = "unstable-2022-02-28";
+  version = "unstable-2022-04-17";
 
   src = fetchFromGitHub {
     owner = "smaeul";
     repo = "sun20i_d1_spl";
     # Last git revision from the `mainline` branch:
-    rev = "0ad88bfdb723b1ac74cca96122918f885a4781ac";
-    sha256 = "sha256-4aztbyexULkqbZ2MWRAl8dw9mU8D6z1mllrVchMewJo=";
+    rev = "882671fcf53137aaafc3a94fa32e682cb7b921f1";
+    sha256 = "sha256-nvLuUiK1Gqjm8vFhpXrwATMuziPm8wXsFhMUDFdBo3U=";
   };
 
   nativeBuildInputs = [ python3 ];
