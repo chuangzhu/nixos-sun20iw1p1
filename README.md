@@ -14,7 +14,7 @@ Prebuilt images can be found on the [GitHub releases page](https://github.com/ch
 
 ## Status
 
-The image boots successfully with WiFi support. HDMI driver is currently missing. Supported boards:
+The image boots successfully with WiFi and HDMI support. Supported boards:
 
 - [x] Sipeed LicheeRV Dock
 - [x] MangoPi MQ-Pro (compatible with LicheeRV)
